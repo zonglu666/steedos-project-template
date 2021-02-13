@@ -2,23 +2,34 @@
   "name": "steedos-project-template",
   "version": "0.0.1",
   "description": "",
-  "main": "server.js",
   "engines": {
     "node": ">=12"
   },
   "scripts": {
-    "debug": "nodemon server.js",
-    "start": "node server.js 2>server.log",
-    "pkg": "node bin/scripts/package.js",
-    "pkg_zip": "node bin/scripts/pkg_zip.js",
-    "pkg_image": "node bin/scripts/pkg_image.js",
-    "upload": "node bin/scripts/upload.js",
-    "upload_zip": "node bin/scripts/upload_zip.js",
-    "upload_image": "node bin/scripts/upload_image.js"
+    "dev": "moleculer-runner --repl --hot services/**/*.service.js",
+    "start": "moleculer-runner services/*.service.js",
+    "cli": "moleculer connect NATS",
+    "ci": "jest --watch",
+    "test": "jest --coverage",
+    "lint": "eslint services",
+    "dc:up": "docker-compose up --build -d",
+    "dc:logs": "docker-compose logs -f",
+    "dc:down": "docker-compose down"
   },
+  "keywords": [
+    "steedos",
+    "low-code",
+    "microservices",
+    "moleculer"
+  ],
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "moleculer-web": "^0.9.0",
+    "moleculer-db": "^0.8.4",
+    "moleculer-db-adapter-mongo": "^0.4.7",
+    "nats": "^1.4.12",
+    "moleculer": "^0.14.10",
     "@steedos/accounts": "1.23.20",
     "@steedos/mongodb-memory-server-core": "^7.0.0-beta.14",
     "@steedos/plugin-enterprise": "1.23.20",
@@ -33,8 +44,21 @@
     "sqlite3": "4.2.0",
     "steedos-server": "1.23.20"
   },
-  "devDependencies": {},
-  "homepage": "https://www.steedos.com",
+  "devDependencies": {
+    "eslint": "^7.7.0",
+    "jest": "^26.4.2",
+    "jest-cli": "^26.4.2",
+    "moleculer-repl": "^0.6.4"
+  },
+  "jest": {
+    "coverageDirectory": "../coverage",
+    "testEnvironment": "node",
+    "rootDir": "./services",
+    "roots": [
+      "../test"
+    ]
+  },
+  "homepage": "https://www.steedos.org",
   "resolutions": {
     "**/lodash": "^4.17.15",
     "**/handlebars": "^4.3.0",
