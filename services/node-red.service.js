@@ -7,6 +7,7 @@ module.exports = {
     mixins: [NodeREDService],
     settings: {
         port: 5100,
-        userDir: path.join(process.cwd(), "steedos-packages", "node-red-test"),
+        httpRoot: '/',
+        userDir: path.join(process.cwd(), "steedos-app", "main", "node-red"),
     }
 }
