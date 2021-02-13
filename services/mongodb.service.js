@@ -18,6 +18,7 @@ module.exports = {
 	 */
 	settings: {
 
+		url: process.env.MONGO_URL,
 		port: process.env.MONGO_PORT || 27018,
 		dbPath: process.env.MONGO_DBPATH || path.join(process.cwd(), dbDirectoryName),
 
@@ -73,7 +74,14 @@ module.exports = {
 	 */
 	created() {
 
-		if (process.env.MONGO_URL) {
+	},
+
+	/**
+	 * Service started lifecycle event handler
+	 */
+	async started() {
+
+		if (this.settings.url) {
 			return;
 		}
 
@@ -89,20 +97,12 @@ module.exports = {
 		}
 
 		this.logger.info(`MongoDB port: ${this.settings.port}`);
-		this.logger.info(`MongoDB db: ${this.settings.dbPath}`);
-	},
-
-	/**
-	 * Service started lifecycle event handler
-	 */
-	async started() {
-
-		if (process.env.MONGO_URL) {
-			return;
-		}
+		this.logger.info(`MongoDB db path: ${this.settings.dbPath}`);
 
 		this.server = await MongoMemoryReplSet.create(this.settings);
-		process.env.MONGO_URL = this.server.getUri();
+		this.settings.url = this.server.getUri();
+		process.env.MONGO_OPLOG_URL=`mongodb://localhost:${this.settings.port}/local`
+		process.env.MONGO_URL = this.settings.url;
 	},
 
 	/**
