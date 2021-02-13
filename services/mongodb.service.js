@@ -18,7 +18,9 @@ module.exports = {
 	 */
 	settings: {
 
-		url: process.env.MONGO_URL,
+		debug: process.env.MONGO_DEBUG || false,
+		downloadMirror: 'https://www-steedos-com.oss-cn-beijing.aliyuncs.com/steedos/platform/bin/mongodb',
+
 		port: process.env.MONGO_PORT || 27018,
 		dbPath: process.env.MONGO_DBPATH || path.join(process.cwd(), dbDirectoryName),
 
@@ -39,7 +41,7 @@ module.exports = {
 		  storageEngine: 'wiredTiger'
 		},
 
-		autoStart: true,
+		autoStart: false,
 
 	},
 
@@ -81,9 +83,8 @@ module.exports = {
 	 */
 	async started() {
 
-		if (this.settings.url) {
-			return;
-		}
+		process.env.MONGOMS_DEBUG = this.settings.debug;
+		process.env.MONGOMS_DOWNLOAD_MIRROR = this.settings.downloadMirror;
 
 		this.settings.instanceOpts = [
 			{
@@ -101,7 +102,8 @@ module.exports = {
 
 		this.server = await MongoMemoryReplSet.create(this.settings);
 		this.settings.url = this.server.getUri();
-		process.env.MONGO_OPLOG_URL=`mongodb://localhost:${this.settings.port}/local`
+		this.settings.oplogUrl = `mongodb://localhost:${this.settings.port}/local`;
+		process.env.MONGO_OPLOG_URL = this.settings.oplogUrl
 		process.env.MONGO_URL = this.settings.url;
 	},
 

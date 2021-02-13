@@ -12,7 +12,8 @@ module.exports = {
 	 * Settings
 	 */
 	settings: {
-		mongoUrl: process.env.MONGO_URL || 'localhost:27017/steedos',
+		mongoUrl: process.env.MONGO_URL,
+		mongoOplogUrl: process.env.MONGO_OPLOG_URL,
 	},
 
 	/**
@@ -55,7 +56,13 @@ module.exports = {
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-		await this.broker.waitForServices(["mongodb"]);
+
+		if (!this.settings.mongoUrl) {
+			await this.broker.waitForServices(["mongodb"]);
+			this.settings.mongoUrl = process.env.MONGO_URL;
+			this.settings.mongoOplogUrl = process.env.MONGO_OPLOG_URL;
+		}
+
 
 		const server = require('@steedos/meteor-bundle-runner');
 		const steedos = require('@steedos/core');
