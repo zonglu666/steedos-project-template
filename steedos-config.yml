@@ -7,8 +7,6 @@ datasources:
 public:
   cfs:
     store: ${STEEDOS_CFS_STORE}
-    local:
-      folder: ${STEEDOS_STORAGE_DIR}
 tenant:
   _id: ${STEEDOS_TENANT_ID}
   name: 华炎魔方

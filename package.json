@@ -25,11 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "moleculer-web": "^0.9.0",
-    "moleculer-db": "^0.8.4",
-    "moleculer-db-adapter-mongo": "^0.4.7",
-    "nats": "^1.4.12",
-    "moleculer": "^0.14.10",
+    "@steedos/service-steedos": "0.0.1",
     "@steedos/accounts": "1.23.20",
     "@steedos/mongodb-memory-server-core": "^7.0.0-beta.14",
     "@steedos/plugin-enterprise": "1.23.20",
