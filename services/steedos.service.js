@@ -8,7 +8,5 @@ module.exports = {
         // Change port setting
 		port: process.env.PORT,
 		rootUrl: process.env.ROOT_URL 
-    },
-    actions: {
     }
 }

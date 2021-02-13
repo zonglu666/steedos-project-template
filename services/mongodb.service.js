@@ -7,7 +7,5 @@ module.exports = {
     settings: {
         // Change debug setting
         debug: true
-    },
-    actions: {
     }
 }
