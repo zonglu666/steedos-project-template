@@ -10,7 +10,8 @@ module.exports = {
         rootUrl: process.env.ROOT_URL,
 		mongoUrl: process.env.MONGO_URL,
         mongoServer: {
-			enabled: !process.env.MONGO_URL,
+            enabled: !process.env.MONGO_URL,
+            debug: true,
             port: process.env.MONGO_PORT || 27018,
             dbPath: process.env.MONGO_DBPATH || path.join(process.cwd(), 'db'),
         },

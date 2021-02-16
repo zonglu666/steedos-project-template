@@ -10,7 +10,7 @@
   "scripts": {
     "dev": "moleculer-runner --repl --hot services/**/*.service.js",
     "start": "moleculer-runner",
-    "cli": "moleculer connect NATS",
+    "cli": "moleculer connect",
     "ci": "jest --watch",
     "test": "jest --coverage",
     "lint": "eslint services",
