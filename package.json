@@ -7,8 +7,8 @@
   },
   "scripts": {
     "dev": "moleculer-runner --repl --hot services/**/*.service.js",
-    "start": "moleculer-runner services/*.service.js",
-    "cli": "moleculer connect TCP",
+    "start": "moleculer-runner",
+    "cli": "moleculer connect NATS",
     "ci": "jest --watch",
     "test": "jest --coverage",
     "lint": "eslint services",
@@ -25,9 +25,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@steedos/service-node-red": "0.0.1",
-    "@steedos/service-mongodb": "0.0.1",
-    "@steedos/service-steedos": "0.0.1",
+    "@steedos/service-steedos-server": "0.0.1",
     "@steedos/service-api": "0.0.1",
     "@steedos/accounts": "1.23.20",
     "@steedos/plugin-enterprise": "1.23.20",

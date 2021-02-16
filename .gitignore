@@ -25,3 +25,5 @@ docker-volumes
 steedos-packages/**/**
 !/steedos-packages/*.package
 server.log
+
+node-red-app/*.backup
