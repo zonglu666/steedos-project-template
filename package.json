@@ -1,6 +1,8 @@
 {
   "name": "steedos-project-template",
   "version": "0.0.1",
+  "private": true,
+  "workspaces.disabled": ["steedos-app", "node-red-app"],
   "description": "",
   "engines": {
     "node": ">=12"
@@ -26,7 +28,6 @@
   "license": "ISC",
   "dependencies": {
     "@steedos/service-steedos-server": "0.0.1",
-    "@steedos/service-api": "0.0.1",
     "@steedos/accounts": "1.23.20",
     "@steedos/plugin-enterprise": "1.23.20",
     "@steedos/plugin-qywx": "^0.0.17",
