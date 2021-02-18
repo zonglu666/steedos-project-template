@@ -630,5 +630,62 @@
                 "file": "/Users/steedos/Documents/GitHub/steedos-platform/node_modules/node-red-contrib-redis/redis.js"
             }
         }
+    },
+    "node-red-contrib-bizwechat": {
+        "name": "node-red-contrib-bizwechat",
+        "version": "1.1.0",
+        "local": false,
+        "nodes": {
+            "bizwechat": {
+                "name": "bizwechat",
+                "types": [
+                    "bizwechat-input",
+                    "bizwechat-output",
+                    "bizwechat-pushbear",
+                    "bizwechat-push",
+                    "bizwechat-upload",
+                    "bizwechat-template"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-bizwechat",
+                "file": "/Users/steedos/Documents/GitHub/steedos-platform/node_modules/node-red-contrib-bizwechat/bizwechat.js"
+            },
+            "bizwechat-configurator": {
+                "name": "bizwechat-configurator",
+                "types": [
+                    "bizwechat-configurator"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-bizwechat",
+                "file": "/Users/steedos/Documents/GitHub/steedos-platform/node_modules/node-red-contrib-bizwechat/bizwechat-configurator.js"
+            }
+        }
+    },
+    "node-red-contrib-moleculer": {
+        "name": "node-red-contrib-moleculer",
+        "version": "0.5.1",
+        "local": false,
+        "nodes": {
+            "moleculer": {
+                "name": "moleculer",
+                "types": [
+                    "moleculer-config",
+                    "moleculer-service-config",
+                    "moleculer-event",
+                    "moleculer-emit",
+                    "moleculer-call",
+                    "moleculer-request-action",
+                    "moleculer-response-action",
+                    "moleculer-apigw",
+                    "moleculer-instance"
+                ],
+                "enabled": true,
+                "local": false,
+                "module": "node-red-contrib-moleculer",
+                "file": "/Users/steedos/Documents/GitHub/steedos-platform/node_modules/node-red-contrib-moleculer/index.js"
+            }
+        }
     }
 }

@@ -1,1 +1,136 @@
-[{"id":"99dcad5d.d38ef","type":"tab","label":"流程 1","disabled":false,"info":""},{"id":"55d0ef1b.21d92","type":"redis-config","name":"Local","options":"{}","cluster":false,"optionsType":"json"},{"id":"626021d1.626ab","type":"inject","z":"99dcad5d.d38ef","name":"","props":[{"p":"payload"},{"p":"topic","vt":"str"}],"repeat":"","crontab":"","once":false,"onceDelay":0.1,"topic":"","payload":"","payloadType":"date","x":120,"y":80,"wires":[["4719c26e.07d56c"]]},{"id":"4719c26e.07d56c","type":"debug","z":"99dcad5d.d38ef","name":"","active":true,"tosidebar":true,"console":false,"tostatus":false,"complete":"false","statusVal":"","statusType":"auto","x":290,"y":80,"wires":[]},{"id":"23dc44dc.5f1e8c","type":"redis-instance","z":"99dcad5d.d38ef","server":"55d0ef1b.21d92","name":"","topic":"redis","location":"flow","x":90,"y":200,"wires":[]},{"id":"1ec83759.d3a029","type":"redis-in","z":"99dcad5d.d38ef","server":"55d0ef1b.21d92","command":"subscribe","name":"","topic":"user.login","obj":true,"timeout":0,"x":100,"y":140,"wires":[[]]}]
+[
+    {
+        "id": "99dcad5d.d38ef",
+        "type": "tab",
+        "label": "流程 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "626021d1.626ab",
+        "type": "inject",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": false,
+        "onceDelay": 0.1,
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "4719c26e.07d56c"
+            ]
+        ]
+    },
+    {
+        "id": "4719c26e.07d56c",
+        "type": "debug",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 290,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "df28bece.500e1",
+        "type": "http in",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "url": "/welcome",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 130,
+        "y": 180,
+        "wires": [
+            [
+                "18c6142d.8f765c"
+            ]
+        ]
+    },
+    {
+        "id": "18c6142d.8f765c",
+        "type": "template",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "field": "payload",
+        "fieldType": "msg",
+        "format": "handlebars",
+        "syntax": "mustache",
+        "template": "<form>\n    <input name=\"username\" value=\"{{payload.username}}\">\n</form>",
+        "output": "str",
+        "x": 330,
+        "y": 180,
+        "wires": [
+            [
+                "1aa5aafb.ab27d5",
+                "67a93ac0.6872c4",
+                "e0226a47.3fb788"
+            ]
+        ]
+    },
+    {
+        "id": "1aa5aafb.ab27d5",
+        "type": "http response",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 570,
+        "y": 80,
+        "wires": []
+    },
+    {
+        "id": "67a93ac0.6872c4",
+        "type": "http request",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": false,
+        "url": "",
+        "persist": false,
+        "authType": "",
+        "x": 560,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "e0226a47.3fb788",
+        "type": "debug",
+        "z": "99dcad5d.d38ef",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 550,
+        "y": 220,
+        "wires": []
+    }
+]
