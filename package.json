@@ -8,7 +8,7 @@
     "node": ">=12"
   },
   "scripts": {
-    "start": "moleculer-runner services",
+    "start": "moleculer-runner project.service.js",
     "cli": "moleculer connect",
     "ci": "jest --watch",
     "test": "jest --coverage",

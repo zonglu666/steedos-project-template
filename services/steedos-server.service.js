@@ -16,7 +16,7 @@ module.exports = {
             dbPath: process.env.MONGO_DBPATH || path.join(process.cwd(), 'db'),
         },
         nodeRedServer: {
-			enabled: true,
+			enabled: false,
             userDir: path.join(process.cwd(), "node-red-app"),
         },
         apiServer: {
@@ -25,7 +25,7 @@ module.exports = {
                 {
                     path: "/services/",
                     whitelist: [
-                        "greeter.*",
+                        "**",
                     ],
                     aliases: {
                         "GET /hi": "greeter.hello"
