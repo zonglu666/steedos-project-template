@@ -61,6 +61,8 @@ module.exports = {
 			this.broker.loadServices("./services", "**/*.service.js");
 		});
 
+		await this.loadTriggers();
+
 		this.logger.info("It will be called after all dependent services are available.");
 	},
 

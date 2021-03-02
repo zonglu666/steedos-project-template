@@ -3,6 +3,7 @@ const path = require('path');
 
 module.exports = {
     name: "steedos-server",
+	namespace: "steedos",
     mixins: [SteedosService],
     settings: {
         // Change port setting
@@ -20,7 +21,7 @@ module.exports = {
             userDir: path.join(process.cwd(), "node-red-app"),
         },
         apiServer: {
-			enabled: true,
+			enabled: false,
             routes: [
                 {
                     path: "/services/",
