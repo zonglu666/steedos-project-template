@@ -2,13 +2,13 @@
 const project = require('./package.json');
 const packageName = project.name;
 const servicePackageLoader = require('@steedos/service-package-loader');
-
+const serviceName = `$packages-${packageName}`;
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
  * 软件包服务启动后也需要抛出事件。
  */
 module.exports = {
-	name: `$packages-${packageName}`,
+	name: serviceName,
 	namespace: "steedos",
 	mixins: [servicePackageLoader],
 	/**
@@ -16,7 +16,7 @@ module.exports = {
 	 */
 	settings: {
 		packagePath: __dirname,
-		packageServiceName: `$packages-${packageName}`
+		packageServiceName: serviceName
 	},
 
 	/**
@@ -57,13 +57,11 @@ module.exports = {
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-		// this.broker.waitForServices(serviceName).then(() => {
-		// 	//new trigger service: ${serviceName}-$triggers
-		// 	this.broker.loadServices("./services", "**/*.service.js");
-		// });
+		this.broker.waitForServices(serviceName).then(() => {
+			this.broker.loadServices("./services", "**/*.service.js");
+		});
 
-		// this.logger.info("It will be called after all dependent services are available.");
-		console.log("package.service.js started!!");
+		this.logger.info("It will be called after all dependent services are available.");
 	},
 
 	/**
