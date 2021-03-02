@@ -22,7 +22,7 @@ module.exports = {
 	/**
 	 * Dependencies
 	 */
-	dependencies: ['steedos-server'],
+	dependencies: [],
 
 	/**
 	 * Actions
@@ -49,21 +49,14 @@ module.exports = {
 	 * Service created lifecycle event handler
 	 */
 	async created() {
-		// new trigger service: ${package serviceName}-$triggers
-		// 扫描trigger.js ，并将trigger转为action 注册${serviceName}-$triggers
+
 	},
 
 	/**
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-		this.broker.waitForServices(serviceName).then(() => {
-			this.broker.loadServices("./services", "**/*.service.js");
-		});
 
-		await this.loadTriggers();
-
-		this.logger.info("It will be called after all dependent services are available.");
 	},
 
 	/**
