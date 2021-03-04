@@ -60,11 +60,10 @@ module.exports = {
 	// More info: https://moleculer.services/docs/0.14/networking.html
 	// Note: During the development, you don't need to define it because all services will be loaded locally.
 	// In production you can set it via `TRANSPORTER=nats://localhost:4222` environment variable.
-	transporter: "redis://127.0.0.1:6379", //process.env.STEEDOS_TRANSPORTER,
+	transporter: process.env.TRANSPORTER, //process.env.STEEDOS_TRANSPORTER,
 
 	// Define a cacher.
 	// More info: https://moleculer.services/docs/0.14/caching.html
-	cacher: "redis://127.0.0.1:6379",
 
 	// Define a serializer.
 	// Available values: "JSON", "Avro", "ProtoBuf", "MsgPack", "Notepack", "Thrift".
