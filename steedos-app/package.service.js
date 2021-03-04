@@ -1,7 +1,7 @@
 "use strict";
 const project = require('./package.json');
 const packageName = project.name;
-const servicePackageLoader = require('@steedos/service-package-loader');
+const packageLoader = require('@steedos/service-package-loader');
 const serviceName = `$packages-${packageName}`;
 /**
  * @typedef {import('moleculer').Context} Context Moleculer's Context
@@ -10,13 +10,14 @@ const serviceName = `$packages-${packageName}`;
 module.exports = {
 	name: serviceName,
 	namespace: "steedos",
-	mixins: [servicePackageLoader],
 	/**
 	 * Settings
 	 */
 	settings: {
-		packagePath: __dirname,
-		packageServiceName: serviceName
+		standardObjectsPackageLoader: {
+			path: __dirname,
+			name: serviceName
+		}
 	},
 
 	/**
@@ -42,7 +43,16 @@ module.exports = {
 	 * Methods
 	 */
 	methods: {
-
+		async startStandardObjectsPackageLoader() {
+			if (this.settings.standardObjectsPackageLoader.path && this.settings.standardObjectsPackageLoader.name) {
+				this.standardObjectsPackageLoaderService = this.broker.createService({
+					name: this.settings.standardObjectsPackageLoader.name,
+					mixins: [packageLoader],
+					settings: this.settings.standardObjectsPackageLoader
+				});
+				this.broker._restartService(this.standardObjectsPackageLoaderService);
+			}
+		}
 	},
 
 	/**
@@ -56,7 +66,7 @@ module.exports = {
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-
+		await this.startStandardObjectsPackageLoader();
 	},
 
 	/**
