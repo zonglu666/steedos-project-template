@@ -1,4 +1,5 @@
 "use strict";
+require('dotenv-flow').config(process.cwd());
 const project = require('./package.json');
 const serviceName = project.name;
 /**
@@ -6,7 +7,7 @@ const serviceName = project.name;
  */
 module.exports = {
 	name: serviceName,
-    namespace: "steedos",
+	namespace: "steedos",
 	/**
 	 * Settings
 	 */
@@ -121,7 +122,7 @@ module.exports = {
 	 * Actions
 	 */
 	actions: {
-		
+
 	},
 
 	/**
@@ -142,19 +143,20 @@ module.exports = {
 	 * Service created lifecycle event handler
 	 */
 	async created() {
-        
+
 	},
 
 	/**
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-        this.broker.waitForServices(serviceName).then(() => {
-            this.broker.loadServices("./services", "**/*.service.js");
-        });
-        
-        this.logger.info("It will be called after all dependent services are available.");
-    },
+		this.broker.waitForServices(serviceName).then(() => {
+			this.broker.loadServices("./steedos-app", "package.service.js");
+			this.broker.loadServices("./services", "**/*.service.js");
+		});
+
+		this.logger.info("It will be called after all dependent services are available.");
+	},
 
 	/**
 	 * Service stopped lifecycle event handler
