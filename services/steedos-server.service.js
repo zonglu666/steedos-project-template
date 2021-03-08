@@ -3,13 +3,13 @@ const path = require('path');
 
 module.exports = {
     name: "steedos-server",
-	namespace: "steedos",
+    namespace: "steedos",
     mixins: [SteedosService],
     settings: {
         // Change port setting
-		port: process.env.PORT,
+        port: process.env.PORT,
         rootUrl: process.env.ROOT_URL,
-		mongoUrl: process.env.MONGO_URL,
+        mongoUrl: process.env.MONGO_URL,
         mongodbServer: {
             enabled: !process.env.MONGO_URL,
             debug: true,
@@ -17,23 +17,11 @@ module.exports = {
             dbPath: process.env.MONGO_DBPATH || path.join(process.cwd(), 'db'),
         },
         nodeRedServer: {
-			enabled: false,
+            enabled: false,
             userDir: path.join(process.cwd(), "node-red-app"),
         },
         apiServer: {
-			enabled: false,
-            routes: [
-                {
-                    path: "/services/",
-                    whitelist: [
-                        "**",
-                    ],
-                    aliases: {
-                        "GET /hi": "greeter.hello"
-                    },
-                    autoAliases: true
-                }
-            ]
+            enabled: true
         }
     }
 }

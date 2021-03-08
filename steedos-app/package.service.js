@@ -10,11 +10,12 @@ const serviceName = `$packages-${packageName}`;
 module.exports = {
 	name: serviceName,
 	namespace: "steedos",
+	mixins: [packageLoader],
 	/**
 	 * Settings
 	 */
 	settings: {
-		standardObjectsPackageLoader: {
+		packageInfo: {
 			path: __dirname,
 			name: serviceName
 		}
@@ -43,16 +44,7 @@ module.exports = {
 	 * Methods
 	 */
 	methods: {
-		async startStandardObjectsPackageLoader() {
-			if (this.settings.standardObjectsPackageLoader.path && this.settings.standardObjectsPackageLoader.name) {
-				this.standardObjectsPackageLoaderService = this.broker.createService({
-					name: this.settings.standardObjectsPackageLoader.name,
-					mixins: [packageLoader],
-					settings: this.settings.standardObjectsPackageLoader
-				});
-				this.broker._restartService(this.standardObjectsPackageLoaderService);
-			}
-		}
+
 	},
 
 	/**
@@ -66,7 +58,7 @@ module.exports = {
 	 * Service started lifecycle event handler
 	 */
 	async started() {
-		await this.startStandardObjectsPackageLoader();
+
 	},
 
 	/**
